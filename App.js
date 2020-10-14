@@ -1,21 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react'
+import { AppLoading } from 'expo'
+import { NavigationContainer } from '@react-navigation/native'
+import { Provider } from 'react-redux'
+
+import store from './src/store/index'
+import { MyStack } from './src/navigation/MyStack'
+import { bootstrap } from './src/bootstrap'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [isReady, setIsReady] = useState(false)
+    if (!isReady) {
+        return (
+            <AppLoading
+                startAsync={bootstrap}
+                onError={(err) => console.log(err)}
+                onFinish={() => setIsReady(true)}
+            />
+        )
+    }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+        <Provider store={store}>
+            <NavigationContainer>
+                <MyStack />
+            </NavigationContainer>
+        </Provider>
+    )
+}

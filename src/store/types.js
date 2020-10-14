@@ -1,0 +1,8 @@
+export const LOAD_CARDS = 'LOAD_CARDS'
+export const FAVOURITES = 'FAVOURITES'
+export const BROWSE = 'BROWSE'
+export const PINK = 'PINK'
+export const EMPTY = 'EMPTY'
+export const TOGGLE_HEART = 'TOGGLE_HEART'
+export const LINE_ON = 'LINE_ON'
+export const LINE_OFF = 'LINE_OFF'
